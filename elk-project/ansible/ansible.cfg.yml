@@ -1,0 +1,17 @@
+# Use apt module
+  - name: Install docker.io
+    become: true
+    apt:
+      force_apt_get: yes
+      name: docker.io
+      state: present
+ # Use apt module
+  - name: Install python3-pip
+    apt:
+      force_apt_get: yes
+      name: python3-pip
+        state: present
+# use docker module
+  -name: Config docker-container
+    docker:
+        

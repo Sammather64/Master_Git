@@ -1,0 +1,29 @@
+name: Install metric beat
+  hosts: webservers
+  become: true
+  tasks:
+    # Use command module
+  - name: Download metricbeat
+    command: curl -L -O https://raw.githubusercontent.com/elastic/beats/7.6/deploy/kubernetes/metricbeat-kubernetes.yaml
+
+    # Use command module
+  - name: install metricbeat
+    command: sudo docker-compose ~/var/lib/docker/containers/metricbeat
+
+    # Use copy module
+  - name: drop in metricbeat config
+    copy:
+      src: /etc/ansible/files/metricbeat-config.yml
+      dest: /etc/metricbeat
+
+    # Use command module
+  - name: enable and configure docker module for metric beat
+    command: #TODO
+
+    # Use command module
+  - name: setup metric beat
+    command: #TODO
+
+    # Use command module
+  - name: start metric beat
+    command: sudo docker-run metricbeat
